@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-
+use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
+use App\Models\Slot;
+use App\Models\Service;
+use App\Models\Hairstyle;
+use Illuminate\Support\Facades\DB;
 
 class appointmentController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.appointments.index');
+        $appointments = Appointment::all();
+
+        return view('admin.appointments.index', compact('appointments'));
     }
 
     /**
@@ -20,7 +36,10 @@ class appointmentController extends Controller
      */
     public function create()
     {
-        //
+        $slots = Slot::all();
+        $services = Service::all();
+        $hairstyles = Hairstyle::all();
+        return view('admin.appointments.create', compact('slots', 'services', 'hairstyles'));
     }
 
     /**
@@ -28,7 +47,28 @@ class appointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone_num' => 'required',
+            'point_date' => 'required',
+            'slot_id' => 'required',
+            'service_id' => 'required',
+            'hairstyle_id' => 'required',
+        ]);
+
+        $newData = new Appointment();
+        $newData->first_name = $request->first_name;
+        $newData->last_name = $request->last_name;
+        $newData->phone_num = $request->phone_num;
+        $newData->point_date = $request->point_date;
+        $newData->slot_id = $request->slot_id;
+        $newData->service_id = $request->service_id;
+        $newData->hairstyle_id = $request->hairstyle_id;
+
+        $newData->save();
+
+        return redirect()->route('admin.appointments.index')->with('message', 'Succesfully added a appointment!');
     }
 
     /**
