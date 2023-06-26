@@ -58,21 +58,19 @@
                         <tr>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
-                            <td>
-                                <td class="col-md-1">
-                                    <div class="table-actions d-flex justify-content-around">
-                                        <a href='{{ route('admin.categories.edit', $category->id) }}'>
-                                            <button type="button" class="btn btn-icon btn-warning"><i class="ik ik-edit-2"></i></button>
-                                        </a>
-                                        <form id="delete-category-{{ $category->id }}" onsubmit="return confirm('You want to delete this data?')" 
-                                            action="{{ route('admin.categories.destroy', $category->id)  }}" class="d-inline" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" name='submit' class="btn btn-icon btn-danger"><i class="ik ik-trash-2"></i></button>
-                                          </form>
-                                    </div>
-                                </td>
-                          </td>
+                            <td class="col-md-1">
+                                <div class="table-actions d-flex justify-content-around">
+                                    <a href='{{ route('admin.categories.edit', $category->id) }}'>
+                                        <button type="button" class="btn btn-icon btn-warning"><i class="ik ik-edit-2"></i></button>
+                                    </a>
+                                    <form id="delete-category-{{ $category->id }}" onsubmit="return confirm('You want to delete this data?')" 
+                                        action="{{ route('admin.categories.destroy', $category->id)  }}" class="d-inline" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" name='submit' class="btn btn-icon btn-danger"><i class="ik ik-trash-2"></i></button>
+                                      </form>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

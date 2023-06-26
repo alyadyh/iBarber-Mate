@@ -29,6 +29,15 @@
 </div>
 
 
+<div class="page-header">
+    <div class="row align-items-end flex-column col-lg-12">
+        <a href="{{ route('admin.appointments.create') }}">
+            <button type="button" class="btn btn-info"><i class="ik ik-plus"></i>Add Appointment</button>
+        </a>
+    </div>
+</div>
+
+
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -43,7 +52,7 @@
                   <tr>
                       <th>Name</th>
                       <th>Phone Number</th>
-                      <th>Appointment date</th>
+                      <th>Appointment Date</th>
                       <th>Location</th>
                       <th>Service</th>
                       <th>Hairstyle</th>
@@ -51,22 +60,30 @@
                   </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                          <td>Tiger Nixon</td>
-                          <td>08123</td>
-                          <td>2011/04/25</td>
-                          <td>Front</td>
-                          <td>Haircut</td>
-                          <td>Queen</td>
-                          <td>
+                    @foreach ($appointments as $appointment)    
+                        <tr>
+                            <td>{{ $appointment->first_name }} {{ $appointment->last_name }}</td>
+                            <td>{{ $appointment->phone_num }}</td>
+                            <td>{{ $appointment->point_date }}</td>
+                            <td>{{ $appointment->slot->location }}</td>
+                            <td>{{ $appointment->service->name }}</td>
+                            <td>{{ $appointment->hairstyle->name }}</td>
                             <td class="col-md-1">
-                                <div class="table-actions d-flex justify-content-around">
-                                    <button type="button" class="btn btn-icon btn-warning"><i class="ik ik-edit-2"></i></button>
-                                    <button type="button" class="btn btn-icon btn-danger"><i class="ik ik-trash-2"></i></button>
-                                </div>
+                                    <div class="table-actions d-flex justify-content-around">
+                                        <a href='{{ route('admin.appointments.edit', $appointment->id) }}'>
+                                            <button type="button" class="btn btn-icon btn-warning"><i class="ik ik-edit-2"></i></button>
+                                        </a>
+                                        <form id="delete-appointments-{{ $appointment->id }}" onsubmit="return confirm('You want to delete this data?')" 
+                                            action="{{ route('admin.appointments.destroy', $appointment->id)  }}" class="d-inline" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" name='submit' class="btn btn-icon btn-danger"><i class="ik ik-trash-2"></i></button>
+                                          </form>
+                                    </div>
+                                </td>
                           </td>
-                        </td>
-                      </tr>
+                        </tr>
+                        @endforeach
                   </tbody>
                   <tfoot>
                   </tfoot>

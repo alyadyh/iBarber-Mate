@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\displayController;
+use App\Http\Controllers\Website\aboutController;
+use App\Http\Controllers\Website\webserviceController;
+use App\Http\Controllers\Website\webhairstyleController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\serviceController;
 use App\Http\Controllers\Admin\hairstyleController;
@@ -22,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [displayController::class, "index"]);
+// Route::resource('home', displayController::class);
 
 Auth::routes();
 
@@ -34,6 +38,14 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(
         Route::resource('hairstyles', hairstyleController::class);
         Route::resource('slots', slotController::class);
         Route::resource('appointments', appointmentController::class);
+    }
+);
+
+Route::prefix('ibarberpal')->group(
+    function() {
+        Route::get('/', [aboutController::class, "index"]);
+        Route::resource('services', webserviceController::class);
+        Route::resource('hairstyles', webhairstyleController::class);
     }
 );
 

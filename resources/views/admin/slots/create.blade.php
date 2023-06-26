@@ -52,14 +52,19 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="status">Choose Status</label>
-                        <select class="form-control" id="status" name="status">
-                            @foreach (App\Enums\SlotStatus::cases() as $status)
-                                <option value="{{ $status->value }}">{{ $status->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    @foreach ($slots as $slot)
+                        @if ($slot->service_id = service_id)
+                            <div class="form-group">
+                                <label for="status">Choose Status</label>
+                                <select class="form-control" id="status" name="status">
+                                    @foreach (App\Enums\SlotStatus::cases() as $status)
+                                        <option value="{{ $status->value }}">{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+                    @endforeach
+
                     <div class="form-group">
                         <label for="location">Choose Location</label>
                         <select class="form-control" id="location" name="location">

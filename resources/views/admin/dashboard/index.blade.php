@@ -7,7 +7,7 @@
           <div class="widget-body">
               <div class="d-flex justify-content-between align-items-center">
                   <div class="state">
-                      <h2>Welcome back, {{ Auth::user()->name }}!</h2>
+                      <h2>Welcome back, {{ config('app.name') }} {{ Auth::user()->name }}!</h2>
                   </div>
               </div>
           </div>
