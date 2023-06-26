@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\serviceController;
 use App\Http\Controllers\Admin\hairstyleController;
 use App\Http\Controllers\Admin\categoryController;
+use App\Http\Controllers\Admin\slotController;
 use App\Http\Controllers\Admin\appointmentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(
         Route::resource('categories', categoryController::class);
         Route::resource('services', serviceController::class);
         Route::resource('hairstyles', hairstyleController::class);
+        Route::resource('slots', slotController::class);
         Route::resource('appointments', appointmentController::class);
     }
 );

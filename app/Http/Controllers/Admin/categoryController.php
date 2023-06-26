@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
+use App\Http\Requests\CategoryStoreRequest;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class categoryController extends Controller
 {
@@ -11,7 +14,8 @@ class categoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -19,15 +23,17 @@ class categoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        //
+        Category::create($request->all());
+
+        return redirect()->route('admin.categories.index')->with('message', 'Succesfully added a category!');
     }
 
     /**
@@ -43,7 +49,9 @@ class categoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::where('id', $id)->first();
+
+        return view('admin.categories.edit')->with('category', $category);
     }
 
     /**
@@ -51,7 +59,19 @@ class categoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Category::where('id', $id)->first();
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $data->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('admin.categories.index')->with('message', 'Succesfully updated a category!');
     }
 
     /**

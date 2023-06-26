@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('slots', function (Blueprint $table) {
             $table->id();
-            $table->string('service');
+            $table->unsignedBigInteger('service_id');
+            $table->foreign('service_id')
+                ->references('id')
+                ->on('services')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
             $table->string('status')->default('available');
             $table->string('location');
             $table->timestamps();

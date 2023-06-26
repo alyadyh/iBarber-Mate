@@ -18,8 +18,17 @@ return new class extends Migration
             $table->string('phone_num');
             $table->dateTime('point_date');
             $table->unsignedBigInteger('slot_id');
-            $table->string('service_id');
-            $table->string('hairstyle_id')->nullable();
+            $table->foreign('slot_id')
+                ->references('id')
+                ->on('slots');
+            $table->unsignedBigInteger('service_id');
+            $table->foreign('service_id')
+                    ->references('id')
+                    ->on('services');
+            $table->unsignedBigInteger('hairstyle_id')->nullable();
+            $table->foreign('hairstyle_id')
+                    ->references('id')
+                    ->on('hairstyles');
             $table->timestamps();
         });
     }

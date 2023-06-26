@@ -147,21 +147,24 @@
                         <div class="nav-container">
                             <nav id="main-menu-navigation" class="navigation-main">
                                 <div class="nav-lavel">Navigation</div>
-                                <div class="nav-item active">
+                                <div class="nav-item {{ request()->is('*dashboard') ? 'active' : '' }}">
                                     <a href="{{ route('admin.dashboard.index') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                                 </div>
                                 
                                 <div class="nav-lavel">Business</div>
-                                <div class="nav-item">
+                                <div class="nav-item {{ request()->is('*categories') ? 'active' : '' }}">
                                     <a href="{{ route('admin.categories.index') }}"><i class="ik ik-server"></i><span>Categories</span></a>
                                 </div>
-                                <div class="nav-item">
+                                <div class="nav-item {{ request()->is('*services') ? 'active' : '' }}">
                                     <a href="{{ route('admin.services.index') }}"><i class="ik ik-gitlab"></i><span>Services</span></a>
                                 </div>
-                                <div class="nav-item">
+                                <div class="nav-item {{ request()->is('*hairstyles') ? 'active' : '' }}">
                                     <a href="{{ route('admin.hairstyles.index') }}"><i class="ik ik-scissors"></i><span>Hairstyles</span></a>
                                 </div>
-                                <div class="nav-item">
+                                <div class="nav-item {{ request()->is('*slots') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.slots.index') }}"><i class="ik ik-layers"></i><span>Slots</span></a>
+                                </div>
+                                <div class="nav-item {{ request()->is('*appointments') ? 'active' : '' }}">
                                     <a href="{{ route('admin.appointments.index') }}"><i class="ik ik-calendar"></i><span>Appointments</span></a>
                                 </div>
 
@@ -312,7 +315,7 @@
                 </div>
                 <div class="main-content">
                     <div class="container-fluid">
-
+                        
                         @yield('content')
                         
                     </div>
@@ -569,8 +572,10 @@
         <script src="{{ asset('b_admin') }}/node_modules/d3/dist/d3.min.js"></script>
         <script src="{{ asset('b_admin') }}/node_modules/c3/c3.min.js"></script>
         <script src="{{ asset('b_admin') }}/js/tables.js"></script>
+        <script src="{{ asset('b_admin') }}/js/datatables.js"></script>
         <script src="{{ asset('b_admin') }}/js/widgets.js"></script>
         <script src="{{ asset('b_admin') }}/js/charts.js"></script>
+        <script src="{{ asset('b_admin') }}/js/forms.js"></script>
         <script src="{{ asset('b_admin') }}/dist/js/theme.min.js"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -581,4 +586,5 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
-    </body
+    </body>
+</html>

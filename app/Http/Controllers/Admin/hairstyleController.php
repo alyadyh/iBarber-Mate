@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
+use App\Http\Requests\HairstyleStoreRequest;
+use App\Models\Hairstyle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class hairstyleController extends Controller
 {
@@ -11,7 +15,8 @@ class hairstyleController extends Controller
      */
     public function index()
     {
-        return view('admin.hairstyles.index');
+        $hairstyles = Hairstyle::all();
+        return view('admin.hairstyles.index', compact('hairstyles'));
     }
 
     /**
@@ -19,7 +24,7 @@ class hairstyleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.hairstyles.create');
     }
 
     /**
@@ -27,7 +32,22 @@ class hairstyleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2408',
+        ]);
+
+        $imagePath = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/images', $imagePath);
+
+        $newData = new Hairstyle();
+        $newData->name = $request->name;
+        $newData->description = $request->description;
+        $newData->image = $imagePath;
+        $newData->save();
+
+        return redirect()->route('admin.hairstyles.index')->with('message', 'Succesfully added a hairstyle!');
     }
 
     /**
@@ -43,7 +63,9 @@ class hairstyleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $hairstyle = Hairstyle::where('id', $id)->first();
+
+        return view('admin.hairstyles.edit')->with('hairstyle', $hairstyle);
     }
 
     /**
@@ -51,7 +73,28 @@ class hairstyleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Hairstyle::where('id', $id)->first();
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2408',
+        ]);
+
+        $image = $data->image;
+        if($request->hasFile('image')) {
+            Storage::delete($data->image);
+            $imagePath = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/images', $imagePath);
+        }
+        
+        $data->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('admin.hairstyles.index')->with('message', 'Succesfully updated a hairstyle!');
     }
 
     /**
@@ -59,6 +102,17 @@ class hairstyleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Hairstyle::findOrFail($id);
+        
+        Storage::delete($data->image);
+
+        $data->delete();
+
+        session()->flash('flash_notification', [
+            'level' => 'success',
+            'message' => 'Hairstyle deleted successfully'
+        ]);
+
+        return redirect()->route('admin.hairstyles.index');
     }
 }

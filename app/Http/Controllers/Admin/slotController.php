@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
+use App\Models\Service;
+use App\Models\Slot;
+use App\Enums\SlotLocation;
+use App\Enums\SlotStatus;
 use Illuminate\Http\Request;
 
-class appointmentController extends Controller
+class slotController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.appointments.index');
+        $data = Slot::with('service')->get();
+        return view('admin.slots.index')->with('data', $data);
     }
 
     /**
@@ -20,7 +25,8 @@ class appointmentController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        return view('admin.slots.create', compact('services'));
     }
 
     /**
@@ -28,7 +34,20 @@ class appointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'service_id' => 'required',
+            'location' => 'required',
+            'status' => 'required',
+        ]);
+
+        $newData = new Slot();
+        $newData->service_id = $request->service_id;
+        $newData->location = $request->location;
+        $newData->status = $request->status;
+
+        $newData->save();
+
+        return redirect()->route('admin.slots.index')->with('message', 'Succesfully added a slot!');
     }
 
     /**

@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
+use App\Models\Category;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class serviceController extends Controller
 {
@@ -11,7 +15,8 @@ class serviceController extends Controller
      */
     public function index()
     {
-        return view('admin.services.index');
+        $data = Service::with('category')->get();
+        return view('admin.services.index')->with('data', $data);
     }
 
     /**
@@ -19,7 +24,8 @@ class serviceController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.services.create', compact('categories'));
     }
 
     /**
@@ -27,7 +33,26 @@ class serviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2408',
+            'price' => 'required',
+        ]);
+
+        $imagePath = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/services', $imagePath);
+
+        $newData = new Service();
+        $newData->category_id = $request->category_id;
+        $newData->name = $request->name;
+        $newData->description = $request->description;
+        $newData->image = $imagePath;
+        $newData->price = $request->price;
+
+        $newData->save();
+
+        return redirect()->route('admin.services.index')->with('message', 'Succesfully added a service!');
     }
 
     /**
@@ -43,7 +68,9 @@ class serviceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $service = Service::where('id', $id)->first();
+
+        return view('admin.services.edit')->with('service', $service);
     }
 
     /**
@@ -51,7 +78,28 @@ class serviceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Service::where('id', $id)->first();
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2408',
+        ]);
+
+        $image = $data->image;
+        if($request->hasFile('image')) {
+            Storage::delete($data->image);
+            $imagePath = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/images', $imagePath);
+        }
+        
+        $data->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('admin.services.index')->with('message', 'Succesfully updated a service!');
     }
 
     /**
@@ -59,6 +107,17 @@ class serviceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Service::findOrFail($id);
+        
+        Storage::delete($data->image);
+
+        $data->delete();
+
+        session()->flash('flash_notification', [
+            'level' => 'success',
+            'message' => 'Service deleted successfully'
+        ]);
+
+        return redirect()->route('admin.services.index');
     }
 }
