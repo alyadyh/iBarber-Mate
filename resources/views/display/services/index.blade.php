@@ -1,6 +1,7 @@
 @extends('display.layout')
 
 @section('content')
+
 <!-- bradcam_area_start -->
 <div class="bradcam_area breadcam_bg overlay">
     <div class="container">
@@ -13,13 +14,14 @@
 </div>
 <!-- bradcam_area_end -->
 
+
 <div class="service_area">
-    <div class="container">
+    <div class="container"> 
         <div class="row justify-content-center ">
             <div class="col-lg-6 col-md-10">
                 <div class="section_title text-center mb-55">
                     <h3>Our Services</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                    {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p> --}}
                 </div>
             </div>
         </div>

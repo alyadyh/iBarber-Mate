@@ -9,6 +9,7 @@
         <meta name="description" content="">
         <meta name="keywords" content="">
         
+        <link rel="shortcut icon" href="{{ asset('b_auth') }}/template/assets/images/favicon.png" />
         <link rel="icon" href="{{ asset('b_admin') }}/favicon.ico" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">

@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\displayController;
-use App\Http\Controllers\Website\aboutController;
-use App\Http\Controllers\Website\webserviceController;
-use App\Http\Controllers\Website\webhairstyleController;
+use App\Http\Controllers\Display\aboutController;
+use App\Http\Controllers\Display\webserviceController;
+use App\Http\Controllers\Display\webhairstyleController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\serviceController;
 use App\Http\Controllers\Admin\hairstyleController;
@@ -44,6 +44,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(
 Route::prefix('ibarberpal')->group(
     function() {
         Route::get('/', [aboutController::class, "index"]);
+        Route::resource('about', aboutController::class);
         Route::resource('services', webserviceController::class);
         Route::resource('hairstyles', webhairstyleController::class);
     }

@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('website') }}/css/slicknav.css">
     <link rel="stylesheet" href="{{ asset('website') }}/css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <link rel="shortcut icon" href="{{ asset('b_auth') }}/template/assets/images/favicon.png" />
 </head>
 
 <body>
@@ -51,9 +52,9 @@
                                     <div class="main-menu">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><a class="active" href="{{ route('display.about.index') }}">about us</a></li>
-                                                <li><a href="{{ route('display.service.index') }}">our services</a></li>
-                                                <li><a href="{{ route('display.hairstyle.index') }}">choose your hairstyle</a></li>
+                                                <li><a class="{{ request()->is('*about') ? 'active' : '' }}" href="{{ route('about.index') }}">about us</a></li>
+                                                <li><a class="{{ request()->is('*service') ? 'active' : '' }}" href="{{ route('services.index') }}">our services</a></li>
+                                                <li><a class="{{ request()->is('*hairstyle') ? 'active' : '' }}" href="{{ route('hairstyles.index') }}">choose your hairstyle</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -250,6 +251,7 @@
     <script src="{{ asset('website') }}/js/mail-script.js"></script>
 
     <script src="{{ asset('website') }}/js/main.js"></script>
+    <script src="{{ asset('website') }}/js/custom.js"></script>
     <script>
         $('#datepicker').datepicker({
             iconsLibrary: 'fontawesome',
