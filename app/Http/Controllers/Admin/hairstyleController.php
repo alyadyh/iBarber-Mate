@@ -48,7 +48,7 @@ class hairstyleController extends Controller
         ]);
 
         $imagePath = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/images', $imagePath);
+        $request->image->storeAs('public/images/hairstyles', $imagePath);
 
         $newData = new Hairstyle();
         $newData->name = $request->name;
@@ -94,7 +94,7 @@ class hairstyleController extends Controller
         if($request->hasFile('image')) {
             Storage::delete($data->image);
             $imagePath = time() . '.' . $request->image->extension();
-            $request->image->storeAs('public/images', $imagePath);
+            $request->image->storeAs('public/images/hairstyles', $imagePath);
         }
         
         $data->update([

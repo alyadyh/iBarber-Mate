@@ -88,6 +88,15 @@ class categoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Category::findOrFail($id);
+
+        $data->delete();
+
+        session()->flash('flash_notification', [
+            'level' => 'success',
+            'message' => 'Category deleted successfully'
+        ]);
+
+        return redirect()->route('admin.categories.index');
     }
 }

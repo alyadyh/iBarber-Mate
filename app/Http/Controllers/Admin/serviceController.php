@@ -50,7 +50,7 @@ class serviceController extends Controller
         ]);
 
         $imagePath = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/services', $imagePath);
+        $request->image->storeAs('public/images/services', $imagePath);
 
         $newData = new Service();
         $newData->category_id = $request->category_id;
@@ -77,7 +77,7 @@ class serviceController extends Controller
      */
     public function edit(string $id)
     {
-        $service = Service::where('id', $id)->first();
+        $service = Service::where('id', $id)->first()->with('category')->get();
 
         return view('admin.services.edit')->with('service', $service);
     }
@@ -93,19 +93,21 @@ class serviceController extends Controller
             'name' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2408',
+            'price' => 'required',
         ]);
 
         $image = $data->image;
         if($request->hasFile('image')) {
             Storage::delete($data->image);
             $imagePath = time() . '.' . $request->image->extension();
-            $request->image->storeAs('public/images', $imagePath);
+            $request->image->storeAs('public/images/services', $imagePath);
         }
         
         $data->update([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imagePath,
+            'price' => $request->price,
         ]);
 
         return redirect()->route('admin.services.index')->with('message', 'Succesfully updated a service!');

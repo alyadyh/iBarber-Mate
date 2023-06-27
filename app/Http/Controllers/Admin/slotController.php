@@ -72,7 +72,9 @@ class slotController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $slot = Service::where('id', $id)->first()->with('service')->get();
+
+        return view('admin.slots.edit')->with('slot', $slot);
     }
 
     /**
@@ -80,7 +82,21 @@ class slotController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Slot::where('id', $id)->first()->with('service')->get();
+
+        $request->validate([
+            'service_id' => 'required',
+            'location' => 'required',
+            'status' => 'required',
+        ]);
+
+        $data->update([
+            'service_id' => $request->service_id,
+            'location' => $request->location,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.slots.index')->with('message', 'Succesfully updated a slot!');
     }
 
     /**
@@ -88,6 +104,15 @@ class slotController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Slot::findOrFail($id);
+
+        $data->delete();
+
+        session()->flash('flash_notification', [
+            'level' => 'success',
+            'message' => 'Slot deleted successfully'
+        ]);
+
+        return redirect()->route('admin.slots.index');
     }
 }

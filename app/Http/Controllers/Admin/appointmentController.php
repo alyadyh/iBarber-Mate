@@ -54,7 +54,7 @@ class appointmentController extends Controller
             'point_date' => 'required',
             'slot_id' => 'required',
             'service_id' => 'required',
-            'hairstyle_id' => 'required',
+            'hairstyle_id' => 'nullable',
         ]);
 
         $newData = new Appointment();
