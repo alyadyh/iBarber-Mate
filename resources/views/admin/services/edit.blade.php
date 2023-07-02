@@ -47,25 +47,39 @@
                     
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $service->name }}">
+                        <input type="text" class="form-control @error('name') border-red-400 is-invalid @enderror" id="name" name="name" placeholder="Name" value="{{ $service->name }}">
+                        @error('name')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+                    
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="4">{{ $service->description }}</textarea>
+                        <textarea class="form-control @error('description') border-red-400 is-invalid @enderror" id="description" name="description" rows="4">{{ $service->description }}</textarea>
+                        @error('description')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" min="0.00" max="999000.00" step="0.01" class="form-control" id="price" name="price" placeholder="100000" value="{{ $service->price }}">
+                        <input type="number" min="0.00" max="999000.00" step="0.01" class="form-control @error('price') border-red-400 is-invalid @enderror" id="price" name="price" placeholder="100000" value="{{ $service->price }}">
+                        @error('price')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>File upload</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{ $service->image }}">
+                            <input type="text" class="form-control file-upload-info @error('image') border-red-400 is-invalid @enderror" disabled placeholder="Upload Image" value="{{ $service->image }}">
                             <span class="input-group-append">
                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                             </span>
                         </div>
+                        @error('image')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>

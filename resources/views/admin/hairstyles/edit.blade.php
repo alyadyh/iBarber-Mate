@@ -56,21 +56,30 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $hairstyle->name }}">
+                        <input type="text" class="form-control @error('name') border-red-400 is-invalid @enderror" id="name" name="name" placeholder="Name" value="{{ $hairstyle->name }}">
+                        @error('name')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Description">{{ $hairstyle->description }}</textarea>
+                        <textarea class="form-control @error('description') border-red-400 is-invalid @enderror" id="description" name="description" rows="4" placeholder="Description">{{ $hairstyle->description }}</textarea>
+                        @error('description')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>File upload</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{ $hairstyle->image }}">
+                            <input type="text" class="form-control file-upload-info @error('image') border-red-400 is-invalid @enderror" disabled placeholder="Upload Image" value="{{ $hairstyle->image }}">
                             <span class="input-group-append">
                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                             </span>
                         </div>
+                        @error('image')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
