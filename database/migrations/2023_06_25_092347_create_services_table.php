@@ -13,12 +13,6 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
             $table->string('name');
             $table->text('description');
             $table->string('image');

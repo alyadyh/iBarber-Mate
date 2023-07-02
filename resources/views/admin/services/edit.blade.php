@@ -8,7 +8,7 @@
                 <i class="ik ik-inbox bg-blue"></i>
                 <div class="d-inline">
                     <h5>Services</h5>
-                    <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                    <span>List of available services in iBarberPal</span>
                 </div>
             </div>
         </div>
@@ -46,30 +46,22 @@
                     @method('PUT')
                     
                     <div class="form-group">
-                        <label for="category_id">Choose Category</label>
-                        <select class="form-control" id="category_id" name="category_id">
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $service->name }}">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="4">{{ $service->description }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" min="0.00" max="999000.00" step="0.01" class="form-control" id="price" name="price" placeholder="100000">
+                        <input type="number" min="0.00" max="999000.00" step="0.01" class="form-control" id="price" name="price" placeholder="100000" value="{{ $service->price }}">
                     </div>
                     <div class="form-group">
                         <label>File upload</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{ $service->image }}">
                             <span class="input-group-append">
                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                             </span>

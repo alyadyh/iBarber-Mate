@@ -8,7 +8,7 @@
               <i class="ik ik-inbox bg-blue"></i>
               <div class="d-inline">
                   <h5>Services</h5>
-                  <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                  <span>List of available services in iBarberPal</span>
               </div>
           </div>
       </div>
@@ -51,7 +51,6 @@
                   <thead>
                   <tr>
                       <th>Name</th>
-                      <th>Category</th>
                       <th>Description</th>
                       <th>Image</th>
                       <th>Price</th>
@@ -59,19 +58,26 @@
                   </tr>
                   </thead>
                   <tbody>
+                    @php
+                        function formatPrice($price) {
+                            return 'Rp ' . number_format($price, 0, ',', '.');
+                        }
+                    @endphp
+                    
                     @foreach ($data as $service)    
                         <tr>
                             <td>{{ $service->name }}</td>
-                            <td>{{ $service->category->name }}</td>
                             <td>{{ $service->description }}</td>
                             <td class="col-md-3">
                                 @if ($service->image)
-                                    <img src="{{ asset('storage/services/'.$service->image) }}" style="height: 100px; width: 200px;">                                    
+                                    <img src="{{ asset('storage/images/services/'.$service->image) }}" style="height: 120px; width: 200px;">                                    
                                 @else
                                     <span>No image found!</span>
                                 @endif
                             </td>
-                            <td>{{ $service->price }}</td>
+                            
+                            <td>{{ formatPrice($service->price) }}</td>
+
                             <td class="col-md-1">
                                     <div class="table-actions d-flex justify-content-around">
                                         <a href='{{ route('admin.services.edit', $service->id) }}'>

@@ -8,7 +8,7 @@
                 <i class="ik ik-inbox bg-blue"></i>
                 <div class="d-inline">
                     <h5>Hairstyles</h5>
-                    <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                    <span>List of hairstyles recommendation in iBarberPal</span>
                 </div>
             </div>
         </div>
@@ -44,6 +44,16 @@
                 <form class="forms-sample" action="{{ route('admin.hairstyles.update', $hairstyle->id) }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
+
+                    <div class="form-group">
+                        <label for="category_id">Choose Category</label>
+                        <select class="form-control" id="category_id" name="category_id">
+                            <option>Select one category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $hairstyle->name }}">

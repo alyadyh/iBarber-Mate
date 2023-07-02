@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\displayController;
 use App\Http\Controllers\Display\aboutController;
-use App\Http\Controllers\Display\webserviceController;
+use App\Http\Controllers\Display\webServiceController;
 use App\Http\Controllers\Display\webhairstyleController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\serviceController;
@@ -45,7 +45,7 @@ Route::prefix('ibarberpal')->group(
     function() {
         Route::get('/', [aboutController::class, "index"]);
         Route::resource('about', aboutController::class);
-        Route::resource('services', webserviceController::class);
+        Route::resource('serves', webServiceController::class);
         Route::resource('hairstyles', webhairstyleController::class);
     }
 );

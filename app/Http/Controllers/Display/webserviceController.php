@@ -9,6 +9,6 @@ class webserviceController extends Controller
 {
     public function index()
     {
-        return view('display.services.index');
+        return view('display.serves.index');
     }
 }

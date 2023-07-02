@@ -63,6 +63,7 @@
                     <div class="form-group">
                         <label for="service_id">Choose Service</label>
                         <select class="form-control" id="service_id" name="service_id">
+                            <option>Select one service</option>
                             @foreach ($services as $service)
                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                             @endforeach
@@ -71,6 +72,7 @@
                     <div class="form-group">
                         <label for="hairstyle_id">Choose Hairstyle</label>
                         <select class="form-control" id="hairstyle_id" name="hairstyle_id">
+                            <option value="">Select one hairstyle</option>
                             @foreach ($hairstyles as $hairstyle)
                                 <option value="{{ $hairstyle->id }}">{{ $hairstyle->name }}</option>
                             @endforeach
@@ -79,6 +81,7 @@
                     <div class="form-group">
                         <label for="location">Choose Location</label>
                         <select class="form-control" id="location" name="location">
+                            <option>Select one location</option>
                             @foreach ($slots as $slot)
                                 <option value="{{ $slot->id }}">{{ $slot->name }}</option>
                             @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\HairstyleStoreRequest;
+use App\Models\Category;
 use App\Models\Hairstyle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,7 @@ class hairstyleController extends Controller
      */
     public function index()
     {
-        $hairstyles = Hairstyle::all();
+        $hairstyles = Hairstyle::with('category')->get();
         return view('admin.hairstyles.index', compact('hairstyles'));
     }
 
@@ -33,7 +34,8 @@ class hairstyleController extends Controller
      */
     public function create()
     {
-        return view('admin.hairstyles.create');
+        $categories = Category::all();
+        return view('admin.hairstyles.create', compact('categories'));
     }
 
     /**
@@ -51,6 +53,7 @@ class hairstyleController extends Controller
         $request->image->storeAs('public/images/hairstyles', $imagePath);
 
         $newData = new Hairstyle();
+        $newData->category_id = $request->category_id;
         $newData->name = $request->name;
         $newData->description = $request->description;
         $newData->image = $imagePath;
@@ -72,7 +75,7 @@ class hairstyleController extends Controller
      */
     public function edit(string $id)
     {
-        $hairstyle = Hairstyle::where('id', $id)->first();
+        $hairstyle = Hairstyle::where('id', $id)->first()->with('category')->get();
 
         return view('admin.hairstyles.edit')->with('hairstyle', $hairstyle);
     }

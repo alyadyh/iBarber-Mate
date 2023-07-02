@@ -8,7 +8,7 @@
               <i class="ik ik-inbox bg-blue"></i>
               <div class="d-inline">
                   <h5>Categories</h5>
-                  <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                  <span>List of hairstyles category</span>
               </div>
           </div>
       </div>

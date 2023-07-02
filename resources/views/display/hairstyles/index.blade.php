@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>Services</h3>
+                <h3>Hairstyles</h3>
             </div>
         </div>
     </div>
@@ -18,8 +18,8 @@
         <div class="row justify-content-center ">
             <div class="col-lg-6 col-md-10">
                 <div class="section_title text-center mb-55">
-                    <h3>Our Services</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                    <h3>Our Hairstyles</h3>
+                    <p>Choose hairstyle that suits you best.</p>
                 </div>
             </div>
         </div>

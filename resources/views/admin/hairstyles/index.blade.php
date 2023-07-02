@@ -8,7 +8,7 @@
               <i class="ik ik-inbox bg-blue"></i>
               <div class="d-inline">
                   <h5>Hairstyles</h5>
-                  <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                  <span>List of hairstyles recommendation in iBarberPal</span>
               </div>
           </div>
       </div>
@@ -50,6 +50,7 @@
                      class="table table-striped table-bordered nowrap">
                   <thead>
                     <tr>
+                      <th>Category</th>
                       <th>Name</th>
                       <th>Description</th>
                       <th>Image</th>
@@ -57,13 +58,15 @@
                   </tr>
                   </thead>
                   <tbody>
+
                     @foreach ($hairstyles as $hairstyle)
                         <tr>
+                            <td>{{ $hairstyle->category->name }}</td>
                             <td>{{ $hairstyle->name }}</td>
-                            <td>{{ $hairstyle->description }}</td>
+                            <td>{!! nl2br(e(wordwrap($hairstyle->description, 50, "\n", true))) !!}</td>
                             <td class="col-md-3">
                                 @if ($hairstyle->image)
-                                    <img src="{{ asset('storage/images/'.$hairstyle->image) }}" style="height: 100px; width: 200px;">                                    
+                                    <img src="{{ asset('storage/images/hairstyles/'.$hairstyle->image) }}" style="height: 100px; width: 95px;">                                    
                                 @else
                                     <span>No image found!</span>
                                 @endif

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
-use App\Models\Category;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +23,7 @@ class serviceController extends Controller
      */
     public function index()
     {
-        $data = Service::with('category')->get();
+        $data = Service::all();
         return view('admin.services.index')->with('data', $data);
     }
 
@@ -33,8 +32,7 @@ class serviceController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.services.create', compact('categories'));
+        return view('admin.services.create');
     }
 
     /**
@@ -53,7 +51,6 @@ class serviceController extends Controller
         $request->image->storeAs('public/images/services', $imagePath);
 
         $newData = new Service();
-        $newData->category_id = $request->category_id;
         $newData->name = $request->name;
         $newData->description = $request->description;
         $newData->image = $imagePath;
@@ -77,7 +74,7 @@ class serviceController extends Controller
      */
     public function edit(string $id)
     {
-        $service = Service::where('id', $id)->first()->with('category')->get();
+        $service = Service::where('id', $id)->first();
 
         return view('admin.services.edit')->with('service', $service);
     }
