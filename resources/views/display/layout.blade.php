@@ -180,54 +180,67 @@
     </footer>
     <!-- footer_end  -->
 
-
-    <!-- form itself end-->
+    {{-- Appointment Form --}}
     <form id="test-form" class="white-popup-block mfp-hide">
-            <div class="popup_box ">
-                    <div class="popup_inner">
-                        <h3>Make an Appointment</h3>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-xl-6 col-md-6">
-                                    <input id="datepicker" placeholder="Date">
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <input id="timepicker" placeholder="time">
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Choose services">Choose services 1</option>
-                                        <option value="1">Choose services 2</option>
-                                        <option value="2">Choose services 3</option>
-                                        <option value="3">Choose services 4</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Choose Barbers">Choose Barbers</option>
-                                        <option value="1">Zaki</option>
-                                        <option value="2">Ronky</option>
-                                        <option value="3">kalu</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <input type="text" placeholder="Your name">
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <input type="text" placeholder="Phone no">
-                                </div>
-                                <div class="col-xl-12">
-                                    <input type="email" placeholder="Your email">
-                                </div>
-                                <div class="col-xl-12">
-                                    <button type="submit" class="boxed-btn3">Submit</button>
-                                </div>
+        <div class="popup_box ">
+                <div class="popup_inner">
+                    <h3>Make an Appointment</h3>
+                    <form action="{{ route('admin.appointments.store') }}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-xl-12 col-md-6">
+                                <input type="datetime-local" id="point_date" name="point_date" placeholder="Date and Time">
                             </div>
-                        </form>
-                    </div>
+                            {{-- <div class="col-xl-6 col-md-6">
+                                <input id="datepicker" placeholder="Date">
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <input id="timepicker" placeholder="time">
+                            </div> --}}
+                            <div class="col-xl-6 col-md-6">
+                                <select class="form-select wide" id="service_id" name="service_id">
+                                    <option data-display="Choose Service">Choose Service</option>
+                                    @foreach ($services as $service)
+                                        <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <select class="form-select wide" id="hairstyle_id" name="hairstyle_id">
+                                    <option data-display="Choose Hairstyle">Choose Hairstyle</option>
+                                    @foreach ($hairstyles as $hairstyle)
+                                        <option value="{{ $hairstyle->id }}">{{ $hairstyle->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-xl-12">
+                                <select class="form-select wide" id="default-select" class="">
+                                    <option data-display="Choose Barbers">Choose Barbers</option>
+                                    <option value="1">Zaki</option>
+                                    <option value="2">Ronky</option>
+                                    <option value="3">kalu</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <input type="text" id="first_name" name="first_name" placeholder="Your first name">
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <input type="text" id="last_name" name="last_name" placeholder="Your last name">
+                            </div>
+                            <div class="col-xl-12">
+                                <input type="text" id="phone_no" name="phono_no" placeholder="Phone no">
+                            </div>
+                            <div class="col-xl-12">
+                                <input type="email" id="email" name="email" placeholder="Your email">
+                            </div>
+                            <div class="col-xl-12">
+                                <button type="submit" class="boxed-btn3">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
         </form>
-<!-- form itself end -->
 
     <!-- JS here -->
     <script src="{{ asset('website') }}/js/vendor/modernizr-3.5.0.min.js"></script>

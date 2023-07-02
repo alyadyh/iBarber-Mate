@@ -52,7 +52,7 @@ class appointmentController extends Controller
             'last_name' => 'required',
             'phone_num' => 'required',
             'point_date' => 'required',
-            'slot_id' => 'required',
+            // 'slot_id' => 'required',
             'service_id' => 'required',
             'hairstyle_id' => 'nullable',
         ]);
@@ -62,7 +62,7 @@ class appointmentController extends Controller
         $newData->last_name = $request->last_name;
         $newData->phone_num = $request->phone_num;
         $newData->point_date = $request->point_date;
-        $newData->slot_id = $request->slot_id;
+        // $newData->slot_id = $request->slot_id;
         $newData->service_id = $request->service_id;
         $newData->hairstyle_id = $request->hairstyle_id;
 

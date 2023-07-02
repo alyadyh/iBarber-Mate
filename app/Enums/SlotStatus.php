@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum SlotStatus: string
 {
-    case Pending = 'pending';
-    case Available = 'available';
-    case Unavailable = 'unavailable';
+    case Pending = 'Pending';
+    case Available = 'Available';
+    case Unavailable = 'Unavailable';
 }

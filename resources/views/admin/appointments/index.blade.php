@@ -53,7 +53,7 @@
                       <th>Name</th>
                       <th>Phone Number</th>
                       <th>Appointment Date</th>
-                      <th>Location</th>
+                      {{-- <th>Location</th> --}}
                       <th>Service</th>
                       <th>Hairstyle</th>
                       <th>Action</th>
@@ -65,7 +65,7 @@
                             <td>{{ $appointment->first_name }} {{ $appointment->last_name }}</td>
                             <td>{{ $appointment->phone_num }}</td>
                             <td>{{ $appointment->point_date }}</td>
-                            <td>{{ $appointment->slot->location }}</td>
+                            {{-- <td>{{ $appointment->slot->location }}</td> --}}
                             <td>{{ $appointment->service->name }}</td>
                             <td>{{ $appointment->hairstyle->name }}</td>
                             <td class="col-md-1">

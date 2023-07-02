@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Display\aboutController;
 use App\Http\Controllers\Display\webServiceController;
+use App\Http\Controllers\Display\webAppointmentController;
 use App\Http\Controllers\Display\webhairstyleController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\serviceController;
@@ -42,6 +43,7 @@ Route::prefix('ibarberpal')->group(
         Route::resource('about', aboutController::class);
         Route::resource('serves', webServiceController::class);
         Route::resource('hairstyles', webhairstyleController::class);
+        Route::resource('appointment', webAppointmentController::class);
     }
 );
 
