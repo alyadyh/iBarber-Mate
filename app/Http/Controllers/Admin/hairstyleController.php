@@ -59,7 +59,7 @@ class hairstyleController extends Controller
         $newData->image = $imagePath;
         $newData->save();
 
-        return redirect()->route('admin.hairstyles.index')->with('message', 'Succesfully added a hairstyle!');
+        return redirect()->route('admin.hairstyles.index')->with('success', ' Succesfully added a hairstyle.');
     }
 
     /**
@@ -106,7 +106,7 @@ class hairstyleController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('admin.hairstyles.index')->with('message', 'Succesfully updated a hairstyle!');
+        return redirect()->route('admin.hairstyles.index')->with('success', ' Succesfully updated a hairstyle.');
     }
 
     /**
@@ -125,6 +125,6 @@ class hairstyleController extends Controller
             'message' => 'Hairstyle deleted successfully'
         ]);
 
-        return redirect()->route('admin.hairstyles.index');
+        return redirect()->route('admin.hairstyles.index')->with('danger', ' Hairstyle deleted successfully.');
     }
 }

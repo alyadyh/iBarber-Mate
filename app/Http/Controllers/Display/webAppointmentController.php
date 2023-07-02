@@ -10,7 +10,7 @@ use App\Models\Service;
 use App\Models\Hairstyle;
 use Illuminate\Support\Facades\DB;
 
-class appointmentController extends Controller
+class webAppointmentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -58,17 +58,17 @@ class appointmentController extends Controller
         ]);
 
         $newData = new Appointment();
-        $newData->first_name = $request->first_name;
-        $newData->last_name = $request->last_name;
-        $newData->phone_num = $request->phone_num;
-        $newData->point_date = $request->point_date;
+        $newData->first_name = $request->input('first_name');
+        $newData->last_name = $request->input('last_name');
+        $newData->phone_num = $request->input('phone_num');
+        $newData->point_date = $request->input('point_date');
         // $newData->slot_id = $request->slot_id;
-        $newData->service_id = $request->service_id;
-        $newData->hairstyle_id = $request->hairstyle_id;
+        $newData->service_id = $request->input('service_id');
+        $newData->hairstyle_id = $request->input('hairstyle_id');
 
         $newData->save();
 
-        return redirect()->route('admin.appointments.index')->with('success', ' Succesfully added a appointment.');
+        return redirect()->back()->with('message', 'Succesfully added a appointment!');
     }
 
     /**

@@ -56,7 +56,7 @@ class slotController extends Controller
 
         $newData->save();
 
-        return redirect()->route('admin.slots.index')->with('message', 'Succesfully added a slot!');
+        return redirect()->route('admin.slots.index')->with('success', ' Succesfully added a slot.');
     }
 
     /**
@@ -96,7 +96,7 @@ class slotController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('admin.slots.index')->with('message', 'Succesfully updated a slot!');
+        return redirect()->route('admin.slots.index')->with('success', ' Succesfully updated a slot.');
     }
 
     /**
@@ -113,6 +113,6 @@ class slotController extends Controller
             'message' => 'Slot deleted successfully'
         ]);
 
-        return redirect()->route('admin.slots.index');
+        return redirect()->route('admin.slots.index')->with('danger', ' Slot deleted successfully.');
     }
 }

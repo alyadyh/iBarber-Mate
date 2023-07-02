@@ -185,6 +185,8 @@
                 </div>
                 <div class="main-content">
                     <div class="container-fluid">
+
+                        @include('admin.message')
                         
                         @yield('content')
                         

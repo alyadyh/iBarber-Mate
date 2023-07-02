@@ -185,11 +185,11 @@
         <div class="popup_box ">
                 <div class="popup_inner">
                     <h3>Make an Appointment</h3>
-                    <form action="{{ route('admin.appointments.store') }}" enctype="multipart/form-data" method="POST">
+                    <form action="{{ route('appointment.store') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-xl-12 col-md-6">
-                                <input type="datetime-local" id="point_date" name="point_date" placeholder="Date and Time">
+                                <input type="datetime-local" class="@error('point_date') border-red-400 is-invalid @enderror" id="point_date" name="point_date" placeholder="Date and Time">
                             </div>
                             {{-- <div class="col-xl-6 col-md-6">
                                 <input id="datepicker" placeholder="Date">
@@ -216,23 +216,36 @@
                             <div class="col-xl-12">
                                 <select class="form-select wide" id="default-select" class="">
                                     <option data-display="Choose Barbers">Choose Barbers</option>
-                                    <option value="1">Zaki</option>
-                                    <option value="2">Ronky</option>
-                                    <option value="3">kalu</option>
+                                    <option value="1">Joshua</option>
+                                    <option value="2">Ricky</option>
+                                    <option value="3">Peipei</option>
                                 </select>
                             </div>
                             <div class="col-xl-6 col-md-6">
-                                <input type="text" id="first_name" name="first_name" placeholder="Your first name">
+                                <input type="text" class="@error('first_name') border-red-400 is-invalid @enderror" id="first_name" name="first_name" placeholder="Your first name">
+                                @error('first_name')
+                                    <div class="text-sm text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-xl-6 col-md-6">
-                                <input type="text" id="last_name" name="last_name" placeholder="Your last name">
+                                <input type="text" class="@error('last_name') border-red-400 is-invalid @enderror" id="last_name" name="last_name" placeholder="Your last name">
+                                @error('last_name')
+                                    <div class="text-sm text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-xl-12">
-                                <input type="text" id="phone_no" name="phono_no" placeholder="Phone no">
+                                <input type="text" class="@error('phone_no') border-red-400 is-invalid @enderror" id="phone_no" name="phone_no" placeholder="Phone no">
+                                @error('phone_no')
+                                    <div class="text-sm text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-xl-12">
-                                <input type="email" id="email" name="email" placeholder="Your email">
+                                <input type="email" class="@error('email') border-red-400 is-invalid @enderror" id="email" name="email" placeholder="Your email">
+                                @error('email')
+                                    <div class="text-sm text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
+        
                             <div class="col-xl-12">
                                 <button type="submit" class="boxed-btn3">Submit</button>
                             </div>

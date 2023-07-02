@@ -42,7 +42,7 @@ class categoryController extends Controller
     {
         Category::create($request->all());
 
-        return redirect()->route('admin.categories.index')->with('message', 'Succesfully added a category!');
+        return redirect()->route('admin.categories.index')->with('success', ' Succesfully added a category.');
     }
 
     /**
@@ -80,7 +80,7 @@ class categoryController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.categories.index')->with('message', 'Succesfully updated a category!');
+        return redirect()->route('admin.categories.index')->with('success', ' Succesfully updated a category.');
     }
 
     /**
@@ -97,6 +97,6 @@ class categoryController extends Controller
             'message' => 'Category deleted successfully'
         ]);
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('danger', ' Category deleted successfully.');
     }
 }

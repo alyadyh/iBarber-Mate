@@ -58,7 +58,7 @@ class serviceController extends Controller
 
         $newData->save();
 
-        return redirect()->route('admin.services.index')->with('message', 'Succesfully added a service!');
+        return redirect()->route('admin.services.index')->with('success', ' Succesfully added a service.');
     }
 
     /**
@@ -107,7 +107,7 @@ class serviceController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect()->route('admin.services.index')->with('message', 'Succesfully updated a service!');
+        return redirect()->route('admin.services.index')->with('success', ' Succesfully updated a service.');
     }
 
     /**
@@ -126,6 +126,6 @@ class serviceController extends Controller
             'message' => 'Service deleted successfully'
         ]);
 
-        return redirect()->route('admin.services.index');
+        return redirect()->route('admin.services.index')->with('danger', ' Service deleted successfully.');
     }
 }
