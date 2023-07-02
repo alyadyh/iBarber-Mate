@@ -19,54 +19,23 @@
             <div class="col-lg-6 col-md-10">
                 <div class="section_title text-center mb-55">
                     <h3>Our Hairstyles</h3>
-                    <p>Choose hairstyle that suits you best.</p>
+                    <p>Choose hairstyle that suits your face shape.</p>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="single_service">
-                     <div class="service_thumb">
-                         <img src="img/service/1.png" alt="">
-                     </div>
-                     <div class="service_content text-center">
-                        <div class="icon">
-                            <i class="flaticon-shave"></i>
-                        </div>
-                        <h3>Smooth Shave</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
-                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_service">
-                     <div class="service_thumb">
-                         <img src="img/service/2.png" alt="">
-                     </div>
-                     <div class="service_content text-center">
-                        <div class="icon">
-                            <i class="flaticon-barber"></i>
-                        </div>
-                        <h3>Beard Triming</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
-                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_service">
-                     <div class="service_thumb">
-                         <img src="img/service/3.png" alt="">
-                     </div>
-                     <div class="service_content text-center">
-                        <div class="icon">
-                            <i class="flaticon-null"></i>
-                        </div>
-                        <h3>Haircut Styles</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
-                     </div>
-                </div>
+            <div class="d-flex justify-content-center mb-55">
+                @foreach ($hairstyles as $item)
+                @endforeach
+                <a href="{{ route('hairstyles.show', ['hairstyle' => $item->category_id = 0]) }}" class="boxed-btn4">All</a>
+                <a href="{{ route('hairstyles.show', ['hairstyle' => $item->category_id = 1]) }}" class="boxed-btn4">Square</a>
+                <a href="{{ route('hairstyles.show', ['hairstyle' => $item->category_id = 2]) }}" class="boxed-btn4">Heart</a>
+                <a href="{{ route('hairstyles.show', ['hairstyle' => $item->category_id = 3]) }}" class="boxed-btn4">Round</a>
+                <a href="{{ route('hairstyles.show', ['hairstyle' => $item->category_id = 4]) }}" class="boxed-btn4">Long</a>
+                <a href="{{ route('hairstyles.show', ['hairstyle' => $item->category_id = 5]) }}" class="boxed-btn4">Oval</a>
             </div>
         </div>
+        @yield('extra-content')
     </div>
 </div>
 

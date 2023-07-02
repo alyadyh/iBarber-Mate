@@ -1,6 +1,4 @@
 <?php
-
-use App\Http\Controllers\displayController;
 use App\Http\Controllers\Display\aboutController;
 use App\Http\Controllers\Display\webServiceController;
 use App\Http\Controllers\Display\webhairstyleController;
@@ -23,9 +21,6 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [displayController::class, "index"]);
-// Route::resource('home', displayController::class);
 
 Auth::routes();
 

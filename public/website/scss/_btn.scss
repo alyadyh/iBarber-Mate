@@ -46,8 +46,8 @@
     }
 }
 .boxed-btn2 {
-	background: transparent;
-	color: #fff;
+	background: #fff;
+	color: #131313;
 	display: inline-block;
 	padding: 18px 24px;
 	font-family: $font2;
@@ -58,8 +58,32 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     &:hover{
-        background: #fff;
-        color: #131313 !important;
+        background: transparent;
+        color: #eb592d !important;
+    }
+    &:focus{
+        outline: none;
+    }
+}
+.boxed-btn4 {
+	background: #fff;
+	color: #131313;
+	display: inline-block;
+	padding: 18px 24px;
+	font-family: $font2;
+	font-size: 14px;
+    font-weight: 400;
+    border: 0;
+    border: 1px solid #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    &:hover{
+        background: transparent;
+        color: #eb592d !important;
+    }
+    &.active{
+        background: transparent;
+        color: #eb592d !important;
     }
     &:focus{
         outline: none;
