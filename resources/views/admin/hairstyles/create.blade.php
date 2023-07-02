@@ -46,30 +46,45 @@
 
                     <div class="form-group">
                         <label for="category_id">Choose Category</label>
-                        <select class="form-control" id="category_id" name="category_id">
+                        <select class="form-control @error('category_id') border-red-400 is-invalid @enderror" id="category_id" name="category_id">
                             <option>Select one category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        <input type="text" class="form-control @error('name') border-red-400 is-invalid @enderror" id="name" name="name" placeholder="Name">
+                        @error('name')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                        <textarea class="form-control @error('description') border-red-400 is-invalid @enderror" id="description" name="description" rows="4"></textarea>
+                        @error('description')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label>File upload</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <input type="text" class="form-control file-upload-info @error('image') border-red-400 is-invalid @enderror" disabled placeholder="Upload Image">
                             <span class="input-group-append">
                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                             </span>
                         </div>
+                        @error('image')
+                            <div class="text-sm text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
