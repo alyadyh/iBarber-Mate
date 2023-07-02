@@ -78,7 +78,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="location">Choose Location</label>
                         <select class="form-control" id="location" name="location">
                             <option>Select one location</option>
@@ -86,7 +86,7 @@
                                 <option value="{{ $slot->id }}">{{ $slot->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
                     
