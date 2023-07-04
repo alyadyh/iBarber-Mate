@@ -35,30 +35,30 @@ Admin able to do create, read, update, and delete iBarberPal Data.
 
 - **Login Page**
 <p align="center">
-<img src="/preview/website/login page.PNG" alt="Alt text" title="">
+<img src="/preview/admin/login page.PNG" alt="Alt text" title="">
 </p>
 
 - **Dashboard Page**
 <p align="center">
-<img src="/preview/website/admin-1-1.PNG" alt="Alt text" title="">
+<img src="/preview/admin/admin-1-1.PNG" alt="Alt text" title="">
 </p>
 
 - **Category Page**
 <p align="center">
-<img src="/preview/website/admin-1-2.PNG" alt="Alt text" title="">
+<img src="/preview/admin/admin-1-2.PNG" alt="Alt text" title="">
 </p>
 
 - **Service Page**
 <p align="center">
-<img src="/preview/website/admin-1-3.PNG" alt="Alt text" title="">
+<img src="/preview/admin/admin-1-3.PNG" alt="Alt text" title="">
 </p>
 
 - **Hairstyle Page**
 <p align="center">
-<img src="/preview/website/admin-1-4.PNG" alt="Alt text" title="">
+<img src="/preview/admin/admin-1-4.PNG" alt="Alt text" title="">
 </p>
 
 - **Appointment Page**
 <p align="center">
-<img src="/preview/website/admin-1-5.PNG" alt="Alt text" title="">
+<img src="/preview/admin/admin-1-5.PNG" alt="Alt text" title="">
 </p>
