@@ -19,7 +19,7 @@
             <div class="col-lg-6 col-md-10">
                 <div class="section_title text-center mb-55">
                     <h3>Our Services</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                    <p>We prioritize our customers comfort and satisfaction.</p>
                 </div>
             </div>
         </div>

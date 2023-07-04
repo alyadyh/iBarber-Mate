@@ -43,7 +43,7 @@
                                 <h3>Modern barber
                                     shop in center
                                     of the city</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Save your time with iBarberPal by choosing the hairstyle that suit you. <br>Get the perfect haircut and be stylish. Make an appointment now.</p>
                                 <a href="#" class="boxed-btn3">Appointment</a>
                             </div>
                         </div>
