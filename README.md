@@ -56,7 +56,7 @@ Admin able to do create, read, update, and delete iBarberPal Data.
 - **Hairstyle Page**
 <p align="center">
 <img src="/preview/admin/admin-1-4.PNG" alt="Alt text" title="">
-</p>
+</p> 
 
 - **Appointment Page**
 <p align="center">
